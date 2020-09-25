@@ -90,7 +90,7 @@ namespace NetToolBox.Search.AzureCognitiveSearch
             var retval = new SearchResponse<T>
             {
                 Results = new List<T>(),
-                ResultCount = searchResponse.Value.TotalCount
+                TotalResultCount = searchResponse.Value.TotalCount
             };
             var results = searchResponse.Value.GetResultsAsync();
 

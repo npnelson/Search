@@ -4,7 +4,7 @@ namespace NetToolBox.Search.Abstractions
 {
     public sealed class SearchResponse<T>
     {
-        public long? ResultCount { get; set; }
+        public long? TotalResultCount { get; set; }
 
         public List<T> Results { get; set; } = null!;
 
