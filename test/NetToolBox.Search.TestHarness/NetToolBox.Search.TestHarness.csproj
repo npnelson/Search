@@ -4,6 +4,7 @@
     <OutputType>Exe</OutputType>
     <TargetFramework>netcoreapp3.1</TargetFramework>
     <UserSecretsId>bfae0299-5cad-478e-b288-287757b9c94c</UserSecretsId>
+    <isPackable>false</isPackable>
   </PropertyGroup>
 
   <ItemGroup>
