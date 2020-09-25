@@ -1,4 +1,5 @@
 ﻿using Microsoft.Extensions.Configuration;
+using NetToolBox.Search.Abstractions;
 using NetToolBox.Search.AzureCognitiveSearch;
 
 namespace Microsoft.Extensions.DependencyInjection
@@ -7,6 +8,8 @@ namespace Microsoft.Extensions.DependencyInjection
     {
         public static IServiceCollection AddAzureSearch(this IServiceCollection services, IConfigurationSection configurationSection)
         {
+            services.AddSingleton<AzureSearchFactory>();
+            services.AddSingleton<ISearchClient, AzureSearchClient>();
             services.Configure<AzureSearchSettings>(configurationSection);
             return services;
         }
