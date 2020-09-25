@@ -24,7 +24,7 @@ namespace NetToolBox.Search.TestHarness
 
             var results = await searchClient.SearchIndexAsync<SnomedSearchResult>("snomed", "heart", "Usage desc");
 
-            foreach (var result in results)
+            foreach (var result in results.Results)
             {
                 Console.WriteLine(result.PreferredTerm);
             }

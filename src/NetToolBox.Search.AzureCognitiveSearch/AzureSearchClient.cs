@@ -70,10 +70,8 @@ namespace NetToolBox.Search.AzureCognitiveSearch
             return retval;
         }
 
-        //TODO: modify result to accomodate paging/total results
-        public async Task<List<T>> SearchIndexAsync<T>(string indexName, string searchTerm, string orderBy, int pageSize = 100, int skip = 0)
+        public async Task<SearchResponse<T>> SearchIndexAsync<T>(string indexName, string searchTerm, string orderBy, int pageSize = 100, int skip = 0)
         {
-            var retval = new List<T>();
             var options = new SearchOptions
             {
                 IncludeTotalCount = true,
@@ -89,12 +87,19 @@ namespace NetToolBox.Search.AzureCognitiveSearch
 
             var searchResponse = await searchClient.SearchAsync<T>(searchTerm, options).ConfigureAwait(false);
 
+            var retval = new SearchResponse<T>
+            {
+                Results = new List<T>(),
+                ResultCount = searchResponse.Value.TotalCount
+            };
             var results = searchResponse.Value.GetResultsAsync();
 
             await foreach (var result in results.ConfigureAwait(false))
             {
-                retval.Add(result.Document);
+                retval.Results.Add(result.Document);
             }
+
+            retval.NextSkipValue = skip + retval.Results.Count;
 
             return retval;
         }

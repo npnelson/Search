@@ -36,6 +36,6 @@ namespace NetToolBox.Search.Abstractions
         /// <param name="pageSize">how many results to return at a time</param>
         /// <param name="skip">used for paging (i.e. to get the second page of 100 results, use skip=100 here </param>
         /// <returns></returns>
-        Task<List<T>> SearchIndexAsync<T>(string indexName, string searchTerm, string orderBy, int pageSize = 100, int skip = 0);
+        Task<SearchResponse<T>> SearchIndexAsync<T>(string indexName, string searchTerm, string orderBy, int pageSize = 100, int skip = 0);
     }
 }
