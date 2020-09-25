@@ -28,13 +28,14 @@ namespace NetToolBox.Search.Abstractions
         Task<List<string>> ListIndexesAsync();
 
         /// <summary>
-        /// Search a given index and return the results in T
+        /// Search an index
         /// </summary>
-        /// <typeparam name="T"></typeparam>
-        /// <param name="indexName">name of the index</param>
+        /// <typeparam name="T">The type you want the search results to hydrate</typeparam>
+        /// <param name="indexName">name of index</param>
         /// <param name="searchTerm">term to search</param>
-        /// <param name="pageSize">how many results to return at a time</param>
-        /// <param name="skip">used for paging (i.e. to get the second page of 100 results, use skip=100 here </param>
+        /// <param name="orderBy">CASE SENSITIVE  - the name of one field you would like to order by, to sort descending use sortfield desc</param>
+        /// <param name="pageSize">the maximum number of results to return</param>
+        /// <param name="skip">the number of entries to skip from the top - usefull for paging scenarioes</param>
         /// <returns></returns>
         Task<SearchResponse<T>> SearchIndexAsync<T>(string indexName, string searchTerm, string orderBy, int pageSize = 100, int skip = 0);
     }

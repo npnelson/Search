@@ -3,5 +3,13 @@
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
     <nullable>enable</nullable>
+    <RepositoryUrl>https://github.com/npnelson/Search</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <Description>Abstraction for search</Description>
+    <Authors>npnelson</Authors>
+    <PublishRepositoryUrl>true</PublishRepositoryUrl>
+    <IncludeSymbols>true</IncludeSymbols>
+    <SymbolPackageFormat>snupkg</SymbolPackageFormat>
+    <IsPackable>true</IsPackable>
   </PropertyGroup>
 </Project>
