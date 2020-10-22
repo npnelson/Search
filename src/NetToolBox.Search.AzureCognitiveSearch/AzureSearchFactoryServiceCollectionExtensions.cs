@@ -17,6 +17,7 @@ namespace Microsoft.Extensions.DependencyInjection
             services.AddSingleton<AzureSearchFactory>();
             services.AddSingleton<ISearchClient, AzureSearchClient>();
             services.Configure<AzureSearchSettings>(configurationSection);
+            services.AddMemoryCache();
             return services;
         }
     }
