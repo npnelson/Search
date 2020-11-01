@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace NetToolBox.Search.Abstractions
@@ -35,8 +36,9 @@ namespace NetToolBox.Search.Abstractions
         /// <param name="searchTerm">term to search</param>
         /// <param name="orderBy">CASE SENSITIVE  - the name of one field you would like to order by, to sort descending use sortfield desc</param>
         /// <param name="pageSize">the maximum number of results to return</param>
-        /// <param name="skip">the number of entries to skip from the top - usefull for paging scenarioes</param>
+        /// <param name="skip">the number of entries to skip from the top - useful for paging scenarioes</param>
+        /// <param name="cancellationToken">optional cancellationToken</param>
         /// <returns></returns>
-        Task<SearchResponse<T>> SearchIndexAsync<T>(string indexName, string searchTerm, string orderBy, int pageSize = 100, int skip = 0);
+        Task<SearchResponse<T>> SearchIndexAsync<T>(string indexName, string searchTerm, string orderBy, int pageSize = 100, int skip = 0, CancellationToken cancellationToken = default);
     }
 }
