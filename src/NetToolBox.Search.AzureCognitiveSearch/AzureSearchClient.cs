@@ -8,6 +8,7 @@ using NetToolBox.Search.Abstractions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace NetToolBox.Search.AzureCognitiveSearch
@@ -85,7 +86,7 @@ namespace NetToolBox.Search.AzureCognitiveSearch
             return indexes;
         }
 
-        public async Task<SearchResponse<T>> SearchIndexAsync<T>(string indexName, string searchTerm, string orderBy, int pageSize = 100, int skip = 0)
+        public async Task<SearchResponse<T>> SearchIndexAsync<T>(string indexName, string searchTerm, string orderBy, int pageSize = 100, int skip = 0, CancellationToken cancellationToken = default)
         {
             var options = new SearchOptions
             {
@@ -100,7 +101,7 @@ namespace NetToolBox.Search.AzureCognitiveSearch
 
             var searchClient = _factory.GetSearchClient(indexName);
 
-            var searchResponse = await searchClient.SearchAsync<T>(searchTerm, options).ConfigureAwait(false);
+            var searchResponse = await searchClient.SearchAsync<T>(searchTerm, options,cancellationToken).ConfigureAwait(false);
 
             var retval = new SearchResponse<T>
             {

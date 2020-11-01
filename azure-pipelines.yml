@@ -29,6 +29,15 @@ stages:
       inputs:
         projects: '**/*.csproj'
         arguments: '--configuration $(BuildConfiguration) /p:Version=$(GitVersion.NugetVersion) /p:InformationalVersion=$(GitVersion.InformationalVersion)'
+
+    - task: DotNetCoreCLI@2
+      displayName: dotnet test
+      inputs:
+        command: test
+        arguments: '--no-build --configuration $(BuildConfiguration) /p:CollectCoverage=true "/p:CoverletOutputFormat=\"opencover,Cobertura\""'
+        projects: 'test/**/*Tests.csproj'
+        nobuild: true
+
     
     - task: DotNetCoreCLI@2
       displayName: dotnet pack
