@@ -22,11 +22,7 @@ namespace NetToolBox.Search.TestHarness
 
             var searchClient = serviceProvider.GetRequiredService<ISearchClient>();
 
-            var indexes = await searchClient.ListIndexesAsync();
-            indexes = await searchClient.ListIndexesAsync();
-            indexes = await searchClient.ListIndexesAsync();
-
-            var results = await searchClient.SearchIndexAsync<SnomedSearchResult>("snomed", "heart", "Usage desc");
+            var results = await searchClient.SearchIndexAsync<SnomedSearchResult>("snomed-demo-2020-10-01", "COVID*", "Usage desc");
 
             foreach (var result in results.Results)
             {

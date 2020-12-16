@@ -93,6 +93,7 @@ namespace NetToolBox.Search.AzureCognitiveSearch
                 IncludeTotalCount = true,
                 Size = pageSize,
                 Skip = skip,
+                SearchMode = SearchMode.All
             };
             if (!string.IsNullOrWhiteSpace(orderBy))
             {
@@ -101,7 +102,7 @@ namespace NetToolBox.Search.AzureCognitiveSearch
 
             var searchClient = _factory.GetSearchClient(indexName);
 
-            var searchResponse = await searchClient.SearchAsync<T>(searchTerm, options,cancellationToken).ConfigureAwait(false);
+            var searchResponse = await searchClient.SearchAsync<T>(searchTerm, options, cancellationToken).ConfigureAwait(false);
 
             var retval = new SearchResponse<T>
             {
